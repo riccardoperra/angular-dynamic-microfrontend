@@ -1,0 +1,10 @@
+{
+    "extends": "fastify-tsconfig",
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "ESNext",
+        "resolveJsonModule": true,
+    },
+    "include": ["src/**/*.ts", "scripts"],
+
+}
