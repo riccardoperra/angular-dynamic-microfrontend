@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean --parallel",
+    "dev": "lerna run dev --parallel"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "concurrently": "^6.3.0",
+    "tsc": "^2.0.3"
+  },
+  "workspaces": ["packages/*"]
+}
