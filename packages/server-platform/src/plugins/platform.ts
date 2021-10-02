@@ -1,6 +1,7 @@
 import fp from 'fastify-plugin';
 import {PlatformRegistry} from '../models/platform';
 import {MicroserviceRequest} from 'fastify-platform';
+import got from 'got';
 
 interface Platform {
   getAll: () => PlatformRegistry;
@@ -12,12 +13,22 @@ export default fp(async (fastify, opts) => {
   const registry: Map<string, MicroserviceRequest> = new Map<string, MicroserviceRequest>();
 
   fastify.decorate('platformServer', {
-    getAll: () => {
-      return {services: Array.from(registry.values())} as PlatformRegistry;
+    getAll: async () => {
+      const urlStatus = '/health';
+      const results = await Promise.all(
+        Array.from(registry.values())
+          .map(service => got.get(`${service.url}${urlStatus}`)
+            .then(() => service)
+            .catch(() => null))
+          .filter(k => !!k)
+      );
+      return {services: results} as PlatformRegistry;
     },
     add: async (request: MicroserviceRequest) => {
       if (!registry.has(request.name)) {
         registry.set(request.name, request);
+      } else {
+        registry.set(request.name, {...registry.get(request.name), ...request});
       }
 
       return Array.from(registry.values());

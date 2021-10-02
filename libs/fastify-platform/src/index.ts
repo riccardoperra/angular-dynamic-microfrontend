@@ -2,6 +2,7 @@ import fp from 'fastify-plugin';
 import got from 'got';
 
 export type MicroserviceRequest = {
+  url: string;
   name: string;
   iconName: string;
   route: string;

@@ -1,0 +1,21 @@
+<div class="header">
+  <h4 class="header-title">{{title | titlecase}}</h4>
+  <div class="nav-item-list">
+    <button
+      class="nav-item"
+      [routerLink]="'/'"
+      [routerLinkActiveOptions]="{exact: true}"
+      [routerLinkActive]="'nav-item-active'">
+      Home
+    </button>
+    <button
+      class="nav-item"
+      *ngFor="let route of routes"
+      [routerLink]="route.href"
+      [routerLinkActiveOptions]="{exact: true}"
+      [routerLinkActive]="'nav-item-active'">
+      {{route.name}}
+    </button>
+  </div>
+
+</div>

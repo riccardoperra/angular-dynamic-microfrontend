@@ -5,7 +5,7 @@ import {fastifyPlatform} from 'fastify-platform';
 // import got from 'got';
 export default fp(
   async (fastify) => {
-    const name = 'app-2';
+    const name = 'client2';
 
     fastify.register(fastifyMs, {
       name
@@ -14,10 +14,11 @@ export default fp(
     fastify.register(fastifyPlatform, {
       gatewayUrl: fastify.env.GATEWAY_URL,
       microservice: {
+        url: 'http://localhost:10002',
         name,
         iconName: 'fa-users',
-        entryPoint: 'http://localhost:4201/remoteEntry.js'
-        route: '/app-2'
+        entryPoint: 'http://localhost:4201/remoteEntry.js',
+        route: '/client2'
       }
     });
 
