@@ -1,5 +1,5 @@
 ## Angular dynamic micro-frontend example
-> Simple angular micro-frontend + fastify micro-services example with dynamic module federation
+> Simple angular micro-frontend + fastify micro-services example with dynamic module federation with [@angular/architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) plugin 
 
 
 ### Run locally
@@ -38,3 +38,13 @@ yarn serve:client-3
 ```bash
 yarn serve:shell
 ```
+
+### Shared libs
+- [fastify-ms](./libs/fastify-ms): Custom fastify plugin to integrate basic routes and info for this microservice example
+- [fastify-platform](./libs/fastify-platform): Custom fastify plugin to integrate microservice information on system startup to the gateway server
+### Packages
+- [shell](./packages/shell): Angular shell to load micro frontend with module federation
+- [client-2](./packages/client-2): Angular client for [server-2](./packages/server-2) microservice example
+- [client-3](./packages/client-3): Angular client for [server-3](./packages/server-3) microservice example
+- [server-2](./packages/server-2): Fastify server microservice example
+- [server-3](./packages/server-3): Fastify server microservice example
