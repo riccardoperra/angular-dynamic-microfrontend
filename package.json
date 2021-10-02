@@ -2,9 +2,14 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "lerna run build --stream",
+    "build:shared": "lerna run --scope fastify-ms --scope fastify-platform build --stream",
     "clean": "lerna run clean --parallel",
-    "dev": "lerna run dev --parallel"
+    "dev:main": "lerna run --scope server-platform dev --stream",
+    "dev:server-2": "yarn workspace server-2 dev",
+    "dev:server-3": "yarn workspace server-3 dev",
+    "serve:shell": "yarn workspace shell start",
+    "serve:client-2": "yarn workspace client2 start",
+    "serve:client-3": "yarn workspace client3 start"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
