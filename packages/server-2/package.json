@@ -1,0 +1,43 @@
+{
+  "name": "server-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "directories": {
+    "test": "test"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "test": "npm run build:ts && tsc -p test/tsconfig.test.json && cross-env TS_NODE_FILES=true tap --ts test/**/*.test.ts",
+    "start": "npm run build:ts && node dist/main.js",
+    "build": "tsc -b",
+    "clean": "rm -rf dist && rm tsconfig.tsbuildinfo",
+    "build:ts": "tsc",
+    "dev": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"fastify start --port=10002 --ignore-watch=.ts$ -w -l info -P dist/app.js\""
+  },
+  "keywords": [],
+  "author": "Riccardo Perra",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.0.0",
+    "fastify-autoload": "^3.3.1",
+    "fastify-cli": "^2.13.0",
+    "fastify-env": "^2.1.1",
+    "fastify-plugin": "^3.0.0",
+    "fastify-sensible": "^3.1.0",
+    "fastify-static": "^4.2.3",
+    "got": "^11.8.2",
+    "fastify-ms": "^1.0.0",
+    "fastify-platform": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.0",
+    "@types/tap": "^15.0.0",
+    "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3",
+    "fastify-tsconfig": "^1.0.1",
+    "tap": "^15.0.9",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.5.0-beta"
+  }
+}
